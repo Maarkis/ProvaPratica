@@ -21,7 +21,7 @@ namespace ProvaPratica.Application.Domain.Client
 
     public enum Sexo
     {
-        Feminino,
-        Masculino
+        Feminino = 0,
+        Masculino = 1
     }
 }

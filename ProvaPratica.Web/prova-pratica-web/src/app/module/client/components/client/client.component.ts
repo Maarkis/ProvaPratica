@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Client } from 'src/app/shared/interfaces/client/client.interface';
 import { GetAllClientResponse } from 'src/app/shared/interfaces/client/get-all-client-response.interface';
 import { Sexo } from 'src/app/shared/interfaces/client/sexo.enum';
@@ -20,7 +21,8 @@ export class ClientComponent implements OnInit {
   filter = new FormControl('');
 
 
-  constructor(private clientService: ClientService, private convenioService: ConvenioService) { }
+  constructor(private clientService: ClientService, private convenioService: ConvenioService,
+              private router: Router) { }
 
   ngOnInit(): void {
 
@@ -47,7 +49,15 @@ export class ClientComponent implements OnInit {
     return empresa.empresa;
   }
 
-  public getSexo(sexo: number): string {
+  public getSex(sexo: number): string {
       return Sexo[sexo];
+  }
+
+  public goCreateClient(): void {
+    this.router.navigate(['cadastro']);
+  }
+
+  public goAtualizarClient(prontuario: number): void {    
+    this.router.navigate(['/client-details', prontuario]);
   }
 }

@@ -27,6 +27,10 @@ namespace ProvaPratica.Application
             services.ConfigureDependency();
             services.ConfigureCORS();
 
+            services.AddControllers().AddNewtonsoftJson(op => op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+
 
             services.AddSwaggerGen(c =>
             {

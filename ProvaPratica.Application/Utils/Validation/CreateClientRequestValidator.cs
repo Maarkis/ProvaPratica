@@ -23,6 +23,8 @@ namespace ProvaPratica.Application.Utils.Validation
                 .WithMessage("Data de nascimento obrigátorio");
 
             RuleFor(f => f.Sexo)
+                .NotNull()                
+                .WithMessage("Sexo obrigátorio")
                 .IsInEnum()
                 .WithMessage("0 - Feminino 1 - Masculino");
 

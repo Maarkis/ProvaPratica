@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 
 import localeBr from '@angular/common/locales/pt';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
 registerLocaleData(localeBr, 'pt')
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ registerLocaleData(localeBr, 'pt')
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,    
+    HttpClientModule,        
+    NgBrazil,
+    TextMaskModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent]

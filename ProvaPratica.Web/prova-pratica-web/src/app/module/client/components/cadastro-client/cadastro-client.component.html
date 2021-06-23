@@ -1,0 +1,142 @@
+<div class="class container" *ngIf="convenios">
+
+  <form [formGroup]="clientRegister" (ngSubmit)="onSubmit(clientRegister.value)">
+
+    <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert" *ngIf="resultError">
+      <strong>{{resultError.mensagem}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nome">Nome</label>
+        <input type="text" formControlName="nome" class="form-control" id="nome" placeholder="Nome">
+        <span *ngIf="hasError('nome', 'required')">
+          Nome é <strong>obrigatório</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="sobrenome">Sobrenome</label>
+        <input type="text" formControlName="sobrenome" class="form-control" id="sobrenome" placeholder="Sobrenome">
+        <span *ngIf="hasError('sobrenome', 'required')">
+          Sobrenome é <strong>obrigatório</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="dt_Nasc">Data nascimento</label>
+        <input type="date" formControlName="dt_Nasc" class="form-control" id="dt_Nasc" placeholder="Data nascimento">
+        <span *ngIf="hasError('dt_Nasc', 'required')">
+          Data de nascimento é <strong>obrigatório</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="sexo">Sexo</label>
+        <select formControlName="sexo" id="sexo" class="form-control">
+          <option [value]="sexo.Feminino">Feminino</option>
+          <option [value]="sexo.Masculino">Masculino</option>
+        </select>
+        <span *ngIf="hasError('sexo', 'required')">
+          Sexo é <strong>obrigatório</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="cpf">CPF</label>
+        <input type="text" formControlName="cpf" [textMask]="{mask: MASKS.cpf.textMask}" class="form-control" id="cpf"
+          placeholder="CPF">
+        <span *ngIf="hasError('cpf', 'required')">
+          CPF é <strong>obrigatório</strong>.
+        </span>
+        <span *ngIf="hasError('cpf', 'cpf')">
+          CPF é <strong>inválido</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="rg">RG</label>
+        <input type="text" formControlName="rg" class="form-control" id="rg" placeholder="RG">
+        <span *ngIf="hasError('rg', 'required')">
+          RG é <strong>obrigatório</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="ufrg">UFRG</label>
+        <input type="text" formControlName="ufrg" maxlength="2" minlength="2" class="form-control" id="ufrg"
+          placeholder="UF RG">
+        <span *ngIf="hasError('ufrg', 'required')">
+          UFRG é <strong>obrigatório</strong>.
+        </span>
+        <span *ngIf="hasError('ufrg', 'minlength')">
+          Mínimo de caractere permitido é <strong>2</strong>.
+        </span>
+        <span *ngIf="hasError('ufrg', 'maxlength')">
+          Máximo de caractere permitido é <strong>2</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <label for="email">E-mail</label>
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="E-mail">
+        <span *ngIf="hasError('email', 'required')">
+          E-mail é <strong>obrigatório</strong>.
+        </span>
+        <span *ngIf="hasError('email', 'email')">
+          E-mail é <strong>inválido</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="celular">Celular</label>
+        <input type="text" formControlName="celular" [textMask]="{mask: MASKS.celular.textMask}" class="form-control"
+          id="celular" placeholder="Celular">
+        <span *ngIf="hasError('celular', 'required')">
+          Celular é <strong>obrigatório</strong>.
+        </span>
+        <span *ngIf="hasError('celular', 'celular')">
+          Celular é <strong>inválido</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="fone_Res">Telefone fixo</label>
+        <input type="text" formControlName="fone_Res" #telefone [textMask]="{mask: MASKS.telefone.textMask}"
+          class="form-control" id="fone_Res" placeholder="Telefone fixo">
+        <span *ngIf="hasError('fone_Res', 'required')">
+          Telefone é <strong>obrigatório</strong>.
+        </span>
+        <span *ngIf="hasError('fone_Res', 'telefone')">
+          Telefone é <strong>inválido</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="id_Convenio">Convênio</label>
+        <select formControlName="id_Convenio" id="id_Convenio" class="form-control">
+          <option *ngFor="let convenio of convenios" [value]="convenio.id_Convenio">
+            {{convenio.empresa}}
+          </option>
+        </select>
+        <span *ngIf="hasError('id_Convenio', 'required')">
+          Convênio é <strong>obrigatório</strong>.
+        </span>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="n_Carteirinha">Número da carteirinha</label>
+        <input type="text" formControlName="n_Carteirinha" class="form-control" id="n_Carteirinha"
+          placeholder="Número da carteirinha">
+        <span *ngIf="hasError('n_Carteirinha', 'required')">
+          Número da carteirinha é <strong>obrigatório</strong>.
+        </span>
+      </div>
+
+      <div class="col-12 mt-3 mb-3">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="ml-1 btn btn-primary" (click)="back()">Voltar</button>
+      </div>
+    </div>
+  </form>
+</div>
