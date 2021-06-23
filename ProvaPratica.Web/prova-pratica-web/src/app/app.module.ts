@@ -1,18 +1,33 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
+import { ClientModule } from './module/client/client.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
 
+import localeBr from '@angular/common/locales/pt';
+registerLocaleData(localeBr, 'pt')
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
+  imports: [    
     BrowserModule,
-    NgbModule
+    NgbModule,    
+    AppRoutingModule,
+    ClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,    
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

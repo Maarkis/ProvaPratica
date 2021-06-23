@@ -6,7 +6,7 @@ namespace ProvaPratica.Application.Utils
     {
         [JsonIgnore]
         public int StatusCode { get; set; }
-        public string Mensagem { get; set; }
+        public string Mensagem { get; set; }        
         
     }
 }

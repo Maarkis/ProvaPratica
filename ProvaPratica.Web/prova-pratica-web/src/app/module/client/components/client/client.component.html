@@ -1,0 +1,40 @@
+<div class="class container-fluid">
+  <button type="button" class="btn btn-primary">Adicionar</button>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Prontuario</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Sobrenome</th>
+          <th scope="col">Data Nascimento</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">CPF</th>
+          <th scope="col">RG</th>
+          <th scope="col">Email</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Telefone fixo</th>
+          <th scope="col">Convênio</th>
+          <th scope="col">Número da carteirinha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients; index as i">
+          <th scope="row">{{client.prontuario}}</th>
+          <td>{{client.nome}}</td>
+          <td>{{client.sobrenome}}</td>
+          <td>{{client.dt_Nasc | date}}</td>
+          <td>{{getSexo(client.sexo)}}</td>
+          <td>{{client.cpf}}</td>
+          <td>{{client.rg}} - {{client.ufrg}}</td>
+          <td>{{client.email}}</td>
+          <td>{{client.celular}}</td>
+          <td>{{client.fone_Res}}</td>
+          <td>{{getNameConvenio(client.id_Convenio)}}</td>
+          <td>{{client.n_Carteirinha}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

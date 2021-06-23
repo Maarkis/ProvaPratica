@@ -25,6 +25,7 @@ namespace ProvaPratica.Application
 
             // Configure dependency inversion
             services.ConfigureDependency();
+            services.ConfigureCORS();
 
 
             services.AddSwaggerGen(c =>
@@ -42,7 +43,7 @@ namespace ProvaPratica.Application
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProvaPratica.Application v1"));
             }
-
+            app.UseCors("AllowCORS");
             app.UseHttpsRedirection();
 
             app.UseRouting();
